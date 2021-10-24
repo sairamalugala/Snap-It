@@ -44,8 +44,8 @@ export default function App() {
     // snap.querySelector('#code-wrapper').style.zoom = 1.2
     htmlToImage
       .toPng(snap, {
-        quality: 1,
-        style: { margin: 0 }
+        quality: 2,
+        style: { margin: 0 },
       })
       .then(function (dataUrl) {
         download(dataUrl, "snap-it.png");
