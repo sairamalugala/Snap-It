@@ -1,5 +1,5 @@
 const Controls = (props) => {
-  const { downloadSnippet, changecolor, colors, options, optionChanged } = props;
+  const { downloadSnippet, changecolor, colors, options, optionChanged,editrorWidth } = props;
   return (
     <div className="controls-wrapper">
       <div>
@@ -251,6 +251,11 @@ const Controls = (props) => {
           <option value="mscgen">xu</option>
           <option value="mscgen">msgenny</option>
         </select>
+      </div>
+      <div id="range__wrapper">
+        <div className="control__label">Width : {editrorWidth}%
+        </div>
+        <input type="range" name="editorwidth" min="0" max="100" value={editrorWidth} onChange={optionChanged}/>
       </div>
       <div>
         <div title="click to download" className="download__wrapper" onClick={() => {

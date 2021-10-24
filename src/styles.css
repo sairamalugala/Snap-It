@@ -16,28 +16,19 @@ body {
 } */
 
 .App {
-  width: 60%;
+  
   margin: 0 auto;
 }
 
-
-@media (max-width:786px) {
-  .App{
-    width: 100%;
-    margin: 0;
-  }
-  .controls-wrapper{
-    flex-direction: column !important;
-  }
-}
-
 .gradient-box {
-  width: auto;
-  height: auto;
+  width: 60%;
+  height: auto !important;
   padding: 40px;
   box-shadow: 0px 1px 20px 3px rgb(0 0 0 / 56%);
   -webkit-box-shadow: 0px 1px 20px 3px rgb(0 0 0 / 56%);
   -moz-box-shadow: 0px 1px 20px 3px rgb(0 0 0 / 56%);
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 #bar {
@@ -62,6 +53,7 @@ body {
   top: 6px;
   /* bottom: -15%; */
   position: absolute;
+  z-index: 2;
 }
 
 #yellow {
@@ -74,6 +66,7 @@ body {
   top: 6px;
   position: absolute;
   display: block;
+  z-index: 2;
 }
 
 #green {
@@ -86,6 +79,7 @@ body {
   top: 6px;
   position: absolute;
   display: block;
+  z-index: 2;
 }
 
 #name input {
@@ -93,7 +87,7 @@ body {
       margin: 0 auto;
       left: 0%;
       top: 4px;
-      z-index: 99;
+      z-index: 1;
       position: relative;
       outline: none;
       background-color: #dad9d9;
@@ -136,6 +130,8 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .controls-wrapper .colors__wrapper {
@@ -236,4 +232,22 @@ svg {
   stroke-linecap: round;
   fill: none;
   margin-top: 13px;
+}
+
+
+@media (max-width:786px) {
+  .gradient-box{
+    width: 100% !important;
+    margin: 0;
+    padding: 30px;
+  }
+  .controls-wrapper{
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width:500px) {
+  .gradient-box {
+    padding: 20px;
+  }
 }

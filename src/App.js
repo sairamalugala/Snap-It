@@ -9,54 +9,79 @@ import "./styles.css";
 export default function App() {
   const [colors, setColors] = useState({
     color1: "#059fff",
-    color2: "#0d17a0"
+    color2: "#0d17a0",
   });
   const [options, setOptions] = useState({
     theme: "cobalt",
     keyMap: "sublime",
     mode: "javascript",
     lineNumbers: false,
-    lineWrapping: true
+    lineWrapping: true,
   });
   const [title, setTitle] = useState("JS map function");
+  const [editrorWidth, setEditorWidth] = useState("60");
   const { color1, color2 } = colors;
   const changeColor = (event) => {
     const target = event.target;
     setColors({
       ...colors,
-      [target.name]: target.value
+      [target.name]: target.value,
     });
   };
   const updateOptions = (event) => {
     const target = event.target;
-    setOptions({
-      ...options,
-      [target.name]: target.value
-    });
+    if (target.name == "editorwidth") {
+      setEditorWidth(target.value);
+    } else {
+      setOptions({
+        ...options,
+        [target.name]: target.value,
+      });
+    }
   };
   const downloadSnippet = () => {
     let snap = document.querySelector("#editor");
-    htmlToImage.toPng(snap, { quality: 1 }).then(function (dataUrl) {
-      download(dataUrl, "snap-it.png");
-    });
+    // snap.querySelector('#code-wrapper').style.zoom = 1.2
+    htmlToImage
+      .toPng(snap, {
+        quality: 1,
+        style: { margin: 0 }
+      })
+      .then(function (dataUrl) {
+        download(dataUrl, "snap-it.png");
+      });
+    // htmlToImage.toCanvas(snap,{
+    //   style:{
+    //     margin:0,
+    //     left:0,
+    //     offset:0
+    //   }
+    // }).then(function (canvas) {
+    //   document.body.appendChild(canvas);
+    // });
   };
   const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
   return (
     <div className="App">
-      <div style={{
-        textAlign: "center",
-        marginBottom: "30px",
-        fontWeight: "bold",
-        fontSize:"30px",
-        marginTop:"20px"
-      }}>Snap-It</div>
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "30px",
+          fontWeight: "bold",
+          fontSize: "30px",
+          marginTop: "20px",
+        }}
+      >
+        Snap-It
+      </div>
       <div
         id="editor"
         className="gradient-box"
         style={{
-          backgroundImage: `linear-gradient(120deg, ${color1}, ${color2})`
+          backgroundImage: `linear-gradient(120deg, ${color1}, ${color2})`,
+          width: `${editrorWidth}%`,
         }}
       >
         <div id="code-wrapper">
@@ -65,7 +90,12 @@ export default function App() {
             <div id="yellow"></div>
             <div id="green"></div>
             <div id="name">
-              <input name="title" value={title} onChange={onTitleChange} title="Click here to change the title" />
+              <input
+                name="title"
+                value={title}
+                onChange={onTitleChange}
+                title="Click here to change the title"
+              />
             </div>
           </div>
           <div className="screen">
@@ -80,6 +110,7 @@ export default function App() {
         optionChanged={updateOptions}
         colors={colors}
         options={options}
+        editrorWidth={editrorWidth}
       />
     </div>
   );
